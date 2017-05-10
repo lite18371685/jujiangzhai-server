@@ -18,19 +18,40 @@ public class UserDao implements IUserDao {
 	private QueryRunner qr = JdbcUtils.getQueryRunner();
 
 	/**
-	 * 插入用户记录
+	 * 插入用户记录.插入时要检验是否已存在该用户名
 	 * 
 	 * @return true:插入成功 false:插入失败
 	 */
 	@Override
 	public boolean insert(User h) {
 
-		// 保证传入的Article对象不为空,且主键id不为空.
+		// 传入参数检验
 		if (h == null) {
 			return false;
 		} else if (h.getId() == null || "".equals(h.getId().trim())) {
 			return false;
+		} else if (h.getUserName() == null || "".equals(h.getUserName().trim())) {
+			return false;
+		} else if (h.getUserPassword() == null || "".equals(h.getUserPassword().trim())){
+			return false;
 		}
+		
+		// 判断是否已经存在该用户名的用户
+		String userName = h.getUserName();
+		String sql0 = "select id from users where userName=?;";
+		
+		try {
+			String id = qr.query(sql0, new ScalarHandler<String>(), userName);
+			//如果id不为空,则已经存在该用户名用户插入记录失败.
+			if(id!=null){
+				return false;
+			}
+
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 
 		// 共有10个占位符
 		String sql = "insert into users values(?,?,?,?,?,?,?,?,?,?);";
@@ -246,15 +267,72 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public boolean updateNickName(String id, String name) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateNickName(String userId, String name) {
+		
+		if (userId == null || "".equals(userId.trim())) {
+			return false;
+		}
+		if (name == null || "".equals(name.trim())) {
+			return false;
+		}
+		
+		String sql = "update users set nickName=? where id=?;";
+		
+		try {
+			int update = qr.update(sql, name, userId);
+			System.out.println(update+" rows updated");
+			if(update==0){
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
+		return true;
 	}
 
 	@Override
 	public void cancelCollect(String userId, String itemId) {
-		// TODO Auto-generated method stub
 
+		if (userId == null || "".equals(userId.trim())) {
+			return ;
+		}
+		if (itemId == null || "".equals(itemId.trim())) {
+			return ;
+		}
+		
+		// 先查询数据库中该用户的关注商品
+		String sql = "select collection from users where id=?;";
+		String collection = null;
+		try {
+			collection = qr.query(sql, new ScalarHandler<String>(), userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String returnString = null;
+		
+		// 如果该用户的关注商品为空或者要被删除的id不包含在内 ,则返回
+		if(collection == null || "".equals(collection.trim()) || ! collection.contains(itemId)){
+			return ;
+		}
+		
+		// 对collection字符串进行处理,删除指定的id
+		String regex = itemId+"#|#"+itemId;
+		returnString = collection.replaceAll(regex, "");
+		
+		// 更新数据库
+		String sql2 = "update users set collection=? where id=?;";
+		try {
+			int update = qr.update(sql2, returnString,userId);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ;
+		
 	}
 
 	@Override

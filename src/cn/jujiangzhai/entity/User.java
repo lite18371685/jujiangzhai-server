@@ -18,14 +18,14 @@ public class User {
 	
 	String lastLogin;
 	
-	List<String> recentViewed;
+	String recentViewed;
 	
 	/**
 	 * 用户收藏的手工艺品, 用手工工艺品的ID存储
 	 */
-	List<String> collection;
+	String collection;
 	
-	List<String> followUp;
+	String followUp;
 
 	public String getId() {
 		return id;
@@ -86,21 +86,6 @@ public class User {
 
 
 
-	public List<String> getCollection() {
-		return collection;
-	}
-
-	public void setCollection(List<String> collection) {
-		this.collection = collection;
-	}
-
-	public List<String> getFollowUp() {
-		return followUp;
-	}
-
-	public void setFollowUp(List<String> followUp) {
-		this.followUp = followUp;
-	}
 
 	public User() {
 		super();
@@ -108,8 +93,9 @@ public class User {
 
 
 
+	
 	public User(String id, String userName, String userPassword, String nickName, String city, String phone,
-			String lastLogin, List<String> recentViewed, List<String> collection, List<String> followUp) {
+			String lastLogin, String recentViewed, String collection, String followUp) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -123,12 +109,28 @@ public class User {
 		this.followUp = followUp;
 	}
 
-	public List<String> getRecentViewed() {
+	public String getRecentViewed() {
 		return recentViewed;
 	}
 
-	public void setRecentViewed(List<String> recentViewed) {
+	public void setRecentViewed(String recentViewed) {
 		this.recentViewed = recentViewed;
+	}
+
+	public String getCollection() {
+		return collection;
+	}
+
+	public void setCollection(String collection) {
+		this.collection = collection;
+	}
+
+	public String getFollowUp() {
+		return followUp;
+	}
+
+	public void setFollowUp(String followUp) {
+		this.followUp = followUp;
 	}
 
 	@Override

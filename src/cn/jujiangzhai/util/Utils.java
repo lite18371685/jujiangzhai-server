@@ -88,74 +88,75 @@ public class Utils {
 		return h;
 	}
 	
-	public static void addUser(User user,Element e){
-		List<String> list = null;
-		e.addElement("id").setText(user.getId());
-		e.addElement("userName").setText(user.getUserName());
-		e.addElement("userPassword").setText(user.getUserPassword());
-		if (user.getNickName()!=null) {
-			e.addElement("nickName").setText(user.getNickName());
-		}else {
-			e.addElement("nickName");
-		}
-		if (user.getCity()!=null) {
-			e.addElement("city").setText(user.getCity());
-		}else {
-			e.addElement("city");
-		}
-		if (user.getPhone()!=null) {
-			e.addElement("phone").setText(user.getPhone());
-		}else {
-			e.addElement("phone");
-		}
-		if (user.getLastLogin()!=null) {
-			e.addElement("lastLogin").setText(user.getLastLogin());
-		}else {
-			e.addElement("lastLogin");
-		}
-
-	    list = user.getRecentViewed();
-		if(list!=null){
-		   
-			e.addElement("recentViewed").setText(f1(list));
-		}else{
-			e.addElement("recentViewed");
-		}
-
-		
-		list = user.getCollection();
-		if(list!=null){
-			   
-			e.addElement("collection").setText(f1(list));
-		}else{
-			e.addElement("collection");
-		}
-		
-	   list = user.getFollowUp();
-	   if(list!=null){
-		   
-			e.addElement("followUp").setText(f1(list));
-		}else{
-			e.addElement("followUp");
-		}
-
-	   
-	}
-	public static User readUser(Element e){
-		User u = new User();
-		u.setId(e.elementText("id"));
-		u.setUserName(e.elementText("userName"));
-		u.setUserPassword(e.elementText("userPassword"));
-		u.setNickName(e.elementText("nickName"));
-		u.setCity(e.elementText("city"));
-		u.setPhone(e.elementText("phone"));
-		u.setLastLogin(e.elementText("lastLogin"));
-		u.setRecentViewed(f2(e.elementText("recentViewed")));
-		u.setCollection(f2(e.elementText("collection")));
-		u.setFollowUp(f2(e.elementText("followUp")));
-		
-		return u;
-	}
+	
+//	public static void addUser(User user,Element e){
+//		List<String> list = null;
+//		e.addElement("id").setText(user.getId());
+//		e.addElement("userName").setText(user.getUserName());
+//		e.addElement("userPassword").setText(user.getUserPassword());
+//		if (user.getNickName()!=null) {
+//			e.addElement("nickName").setText(user.getNickName());
+//		}else {
+//			e.addElement("nickName");
+//		}
+//		if (user.getCity()!=null) {
+//			e.addElement("city").setText(user.getCity());
+//		}else {
+//			e.addElement("city");
+//		}
+//		if (user.getPhone()!=null) {
+//			e.addElement("phone").setText(user.getPhone());
+//		}else {
+//			e.addElement("phone");
+//		}
+//		if (user.getLastLogin()!=null) {
+//			e.addElement("lastLogin").setText(user.getLastLogin());
+//		}else {
+//			e.addElement("lastLogin");
+//		}
+//
+//	    list = user.getRecentViewed();
+//		if(list!=null){
+//		   
+//			e.addElement("recentViewed").setText(f1(list));
+//		}else{
+//			e.addElement("recentViewed");
+//		}
+//
+//		
+//		list = user.getCollection();
+//		if(list!=null){
+//			   
+//			e.addElement("collection").setText(f1(list));
+//		}else{
+//			e.addElement("collection");
+//		}
+//		
+//	   list = user.getFollowUp();
+//	   if(list!=null){
+//		   
+//			e.addElement("followUp").setText(f1(list));
+//		}else{
+//			e.addElement("followUp");
+//		}
+//
+//	   
+//	}
+//	public static User readUser(Element e){
+//		User u = new User();
+//		u.setId(e.elementText("id"));
+//		u.setUserName(e.elementText("userName"));
+//		u.setUserPassword(e.elementText("userPassword"));
+//		u.setNickName(e.elementText("nickName"));
+//		u.setCity(e.elementText("city"));
+//		u.setPhone(e.elementText("phone"));
+//		u.setLastLogin(e.elementText("lastLogin"));
+//		u.setRecentViewed(f2(e.elementText("recentViewed")));
+//		u.setCollection(f2(e.elementText("collection")));
+//		u.setFollowUp(f2(e.elementText("followUp")));
+//		
+//		return u;
+//	}
 	
 	
 	public static void addShop(Shop s,Element e) {

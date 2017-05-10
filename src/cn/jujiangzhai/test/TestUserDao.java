@@ -8,6 +8,7 @@ import cn.jujiangzhai.dao.IUserDao;
 import cn.jujiangzhai.dao.impl.jdbc.UserDao;
 import cn.jujiangzhai.entity.User;
 import cn.jujiangzhai.util.JdbcUtils;
+import cn.jujiangzhai.util.Utils;
 
 public class TestUserDao {
 
@@ -42,10 +43,29 @@ public class TestUserDao {
 		
 	}
 	
+	@Test 
+	public void testInsert(){
+		User user = new User();
+		user.setId(Utils.getUUID());
+		user.setUserName("lite");
+		user.setUserPassword("zxczxc");
+		
+		boolean res = dao.insert(user);
+		System.out.println(res);
+	}
+	
 	@Test
 	public void testQueryByPhone(){
-		User user = dao.queryByPhone("1313");
+		User user = dao.queryByPhone("15077868750");
 		System.out.println(user);
 		
 	}
+	
+	@Test
+	public void testQueryByUserName(){
+		String userName = "123456";
+		System.out.println(dao.queryByUserName(userName));
+	}
+	
+
 }
