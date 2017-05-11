@@ -22,7 +22,7 @@ import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
 import cn.jujiangzhai.dao.ICraftDao;
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
 import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.util.Utils;
 
@@ -75,7 +75,7 @@ public class ModifyEntry extends HttpServlet {
 			
 			File path = new File(this.getServletContext().getRealPath("/")+"db/handicrafts.xml");
 			
-			CraftDao dao = new CraftDao(path);
+			CraftDao dao = new CraftDao();
 			
 			dao.update(handicraft);
 			

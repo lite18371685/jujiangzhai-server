@@ -16,8 +16,8 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import cn.jujiangzhai.dao.impl.xml.ArticleDao;
-import cn.jujiangzhai.dao.impl.xml.ShopDao;
+import cn.jujiangzhai.dao.impl.jdbc.ArticleDao;
+import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
 import cn.jujiangzhai.entity.Article;
 import cn.jujiangzhai.entity.Shop;
 import cn.jujiangzhai.util.Path;
@@ -127,7 +127,7 @@ public class AddArticle extends HttpServlet {
 		}
 
 		File path = new File(Path.getArticlesPath(this.getServletContext()));
-		ArticleDao dao = new ArticleDao(path);
+		ArticleDao dao = new ArticleDao();
 		dao.insert(article);
 		request.getRequestDispatcher("InputArticle.jsp").forward(request, response);
 		

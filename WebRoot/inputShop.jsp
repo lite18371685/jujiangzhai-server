@@ -1,4 +1,4 @@
-<%@page import="cn.jujiangzhai.dao.impl.xml.ShopDao,cn.jujiangzhai.entity.*"%>
+<%@page import="cn.jujiangzhai.dao.impl.jdbc.ShopDao,cn.jujiangzhai.entity.*"%>
 <%@ page language="java" import="java.util.*,java.io.File" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     <%
     	File xmlPath = new File(pageContext.getServletContext().getRealPath("/")+"db/shops.xml");
-        ShopDao dao = new ShopDao(xmlPath);
+        ShopDao dao = new ShopDao();
         List<Shop> list = dao.queryAll();
         if(list!=null){
        	 pageContext.setAttribute("shopList", list);

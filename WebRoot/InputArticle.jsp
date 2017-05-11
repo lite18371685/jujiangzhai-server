@@ -1,7 +1,6 @@
-<%@page import="cn.jujiangzhai.dao.impl.xml.ArticleDao"%>
 
-<%@page import="cn.jujiangzhai.util.Path"%>
-<%@page import="cn.jujiangzhai.dao.impl.xml.ShopDao,cn.jujiangzhai.entity.*"%>
+
+<%@page import="cn.jujiangzhai.dao.impl.jdbc.ArticleDao,cn.jujiangzhai.entity.*"%>
 <%@ page language="java" import="java.util.*,java.io.File" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
@@ -29,8 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <%
-  	File xmlPath = new File(Path.getArticlesPath(pageContext.getServletContext()));
-      ArticleDao dao = new ArticleDao(xmlPath);
+      ArticleDao dao = new ArticleDao();
       List<Article> list = dao.queryAll();
       if(list!=null){
      	 pageContext.setAttribute("list", list);

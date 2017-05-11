@@ -13,7 +13,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
 import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.util.Utils;
 
@@ -45,7 +45,7 @@ public class Modify extends HttpServlet {
 		if(id==null||(!path.exists())){			
 			response.getWriter().write("修改失败");
 		}else{
-			CraftDao dao = new CraftDao(path);
+			CraftDao dao = new CraftDao();
 			Handicraft h = dao.queryById(id);
 			request.setAttribute("handicraft", h);
 			request.getRequestDispatcher("modify.jsp").forward(request, response);

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
-import cn.jujiangzhai.dao.impl.xml.ShopDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
 
 /**
  * Servlet implementation class DeleteShop
@@ -32,7 +32,7 @@ public class DeleteShop extends HttpServlet {
 			File path = new File(this.getServletContext().getRealPath("/")+"db"+File.separator+"shops.xml");
 			
 
-			ShopDao dao = new ShopDao(path);
+			ShopDao dao = new ShopDao();
 			
 			dao.delete(id);
 				

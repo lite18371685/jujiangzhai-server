@@ -1,5 +1,5 @@
 <%@page
-	import="cn.jujiangzhai.dao.*,cn.jujiangzhai.entity.*,cn.jujiangzhai.util.*"%>
+	import="cn.jujiangzhai.dao.impl.jdbc.*,cn.jujiangzhai.entity.*,cn.jujiangzhai.util.*"%>
 <%@ page language="java" import="java.util.*,java.io.File"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			if (id != null) {
 		pageContext.setAttribute("hasId", true);
 		File xmlPath = new File(Path.getArticlesPath(application));
-		ArticleDao dao = new ArticleDao(xmlPath);
+		ArticleDao dao = new ArticleDao();
 		Article a =dao.queryById(id);
 		pageContext.setAttribute("article", a);
 			} else {

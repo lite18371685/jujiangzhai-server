@@ -14,7 +14,7 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
 import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.util.Utils;
 
@@ -54,7 +54,7 @@ public class Query extends HttpServlet {
 //			request.getRequestDispatcher("query.jsp").forward(request, response);
 //		}
 		
-		CraftDao dao = new CraftDao(path);
+		CraftDao dao = new CraftDao();
 		Handicraft h = dao.queryById(id);
 		request.setAttribute("handicraft", h);
 		request.getRequestDispatcher("query.jsp").forward(request, response);		

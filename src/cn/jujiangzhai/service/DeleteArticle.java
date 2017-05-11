@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.ArticleDao;
-import cn.jujiangzhai.dao.impl.xml.ShopDao;
+import cn.jujiangzhai.dao.impl.jdbc.ArticleDao;
+import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
 
 /**
  * Servlet implementation class DeleteArticle
@@ -33,7 +33,7 @@ public class DeleteArticle extends HttpServlet {
 			File path = new File(this.getServletContext().getRealPath("/")+"db"+File.separator+"articles.xml");
 			
 
-			ArticleDao dao = new ArticleDao(path);
+			ArticleDao dao = new ArticleDao();
 			
 			dao.delete(id);
 				

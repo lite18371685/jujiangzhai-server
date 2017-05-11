@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.TokenDao;
-import cn.jujiangzhai.dao.impl.xml.UserDao;
+import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
+import cn.jujiangzhai.dao.impl.jdbc.UserDao;
 import cn.jujiangzhai.entity.TokenInfo;
 import cn.jujiangzhai.entity.User;
 import cn.jujiangzhai.util.Path;
@@ -37,14 +37,13 @@ public class Login extends HttpServlet {
 
 		if(userName!=null&&password!=null){
 			
-			UserDao dao = new UserDao(new File(Path.getUsersPath(this.getServletContext())));
+			UserDao dao = new UserDao();
 			
 			User user = dao.queryByUserName(userName);
 			
 			if(user!=null){
 				if(userName.equals(user.getUserName())&&password.equals(user.getUserPassword())){
-					TokenDao tokenDao = new TokenDao(new File(Path.getTokensPath(this.getServletContext())));
-					tokenDao.deleteById(user.getId());
+					TokenDao tokenDao = new TokenDao();
 					token = tokenDao.insert(user.getId());
 					TokenInfo info = new TokenInfo(1,token);
 					response.getWriter().write(JSONObject.fromObject(info).toString());

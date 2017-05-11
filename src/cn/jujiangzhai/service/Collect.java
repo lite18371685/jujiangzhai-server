@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.TokenDao;
-import cn.jujiangzhai.dao.impl.xml.UserDao;
+import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
+import cn.jujiangzhai.dao.impl.jdbc.UserDao;
 import cn.jujiangzhai.util.Path;
 
 /**
@@ -34,8 +34,8 @@ public class Collect extends HttpServlet {
 		String type = request.getParameter("type");
 		String action=request.getParameter("action");
 		String msg=null;
-		TokenDao tokenDao = new TokenDao(new File(Path.getTokensPath(this.getServletContext())));
-		UserDao userDao = new UserDao(new File(Path.getUsersPath(this.getServletContext())));
+		TokenDao tokenDao = new TokenDao();
+		UserDao userDao = new UserDao();
 		if ("cancel".equals(action)) {		//取消收藏接口
 			int status = 0;
 			if(token!=null&&type!=null&&itemId!=null){

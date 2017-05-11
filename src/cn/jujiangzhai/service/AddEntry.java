@@ -29,7 +29,7 @@ import org.dom4j.io.XMLWriter;
 import org.omg.CORBA.PRIVATE_MEMBER;
 
 import cn.jujiangzhai.dao.ICraftDao;
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
 import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.util.Utils;
 
@@ -149,7 +149,7 @@ public class AddEntry extends HttpServlet {
 		// ---------------------保存数据到数据库-----------------------------
 		File path = new File(this.getServletContext().getRealPath("/") + "db/handicrafts.xml");
 
-		CraftDao dao = new CraftDao(path);
+		CraftDao dao = new CraftDao();
 
 		dao.insert(handicraft);
 

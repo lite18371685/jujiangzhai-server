@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.TokenDao;
+import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
 import cn.jujiangzhai.util.Path;
 
 /**
@@ -33,7 +33,7 @@ public class Logout extends HttpServlet {
 
 		String token = request.getParameter("token");
 		
-		TokenDao dao = new TokenDao(new File(Path.getTokensPath(this.getServletContext())));
+		TokenDao dao = new TokenDao();
 		
 		dao.delete(token);
 	}

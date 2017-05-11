@@ -1,6 +1,5 @@
 package cn.jujiangzhai.service;
 
-import java.io.File;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.TokenDao;
-import cn.jujiangzhai.dao.impl.xml.UserDao;
+import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
+import cn.jujiangzhai.dao.impl.jdbc.UserDao;
 import cn.jujiangzhai.entity.TokenInfo;
 import cn.jujiangzhai.entity.User;
-import cn.jujiangzhai.util.Path;
+
 import cn.jujiangzhai.util.Utils;
 import net.sf.json.JSONObject;
 
@@ -35,7 +34,7 @@ public class Register extends HttpServlet {
 		
 		String  password = request.getParameter("password");
 		
-		UserDao userDao = new UserDao(new File(Path.getUsersPath(this.getServletContext())));
+		UserDao userDao = new UserDao();
 		
 		if(userName!=null&&password!=null){
 			if(userDao.queryByUserName(userName)==null){	//若数据库中不存在重名用户,则添加
@@ -46,7 +45,7 @@ public class Register extends HttpServlet {
 				
 				userDao.insert(newUser);
 				
-				TokenDao tokenDao = new TokenDao(new File(Path.getTokensPath(this.getServletContext())));
+				TokenDao tokenDao = new TokenDao();
 				
 				String token = tokenDao.insert(newUser.getId());
 				

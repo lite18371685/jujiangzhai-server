@@ -16,7 +16,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
 
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
 
 /**
  * Servlet implementation class Delete
@@ -39,7 +39,7 @@ public class Delete extends HttpServlet {
 			File path = new File(this.getServletContext().getRealPath("/")+"db/handicrafts.xml");
 			
 
-			CraftDao dao = new CraftDao(path);
+			CraftDao dao = new CraftDao();
 			
 			dao.delete(id);
 				

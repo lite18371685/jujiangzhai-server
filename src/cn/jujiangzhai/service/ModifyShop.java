@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import cn.jujiangzhai.dao.impl.xml.ShopDao;
+import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
 import cn.jujiangzhai.entity.Shop;
 
 /**
@@ -39,7 +39,7 @@ public class ModifyShop extends HttpServlet {
 			
 			File path = new File(this.getServletContext().getRealPath("/")+"db"+File.separator+"shops.xml");
 			
-			ShopDao dao = new ShopDao(path);
+			ShopDao dao = new ShopDao();
 			
 			dao.update(shop);
 			

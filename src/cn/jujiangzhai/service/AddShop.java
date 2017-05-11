@@ -16,7 +16,7 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import cn.jujiangzhai.dao.impl.xml.ShopDao;
+import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
 import cn.jujiangzhai.entity.Shop;
 
 /**
@@ -130,7 +130,7 @@ public class AddShop extends HttpServlet {
 		}
 
 		File path = new File(this.getServletContext().getRealPath("/") + "db/shops.xml");
-		ShopDao dao = new ShopDao(path);
+		ShopDao dao = new ShopDao();
 		dao.insert(shop);
 		request.getRequestDispatcher("inputShop.jsp").forward(request, response);
 	}

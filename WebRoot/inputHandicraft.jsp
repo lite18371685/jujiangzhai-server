@@ -1,4 +1,4 @@
-<%@page import="cn.jujiangzhai.dao.impl.xml.CraftDao"%>
+<%@page import="cn.jujiangzhai.dao.impl.jdbc.CraftDao"%>
 <%@page import="cn.jujiangzhai.entity.Handicraft"%>
 <%@ page language="java" import="java.util.*,java.io.*" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,7 +28,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	<%
 		File xmlPath = new File(pageContext.getServletContext().getRealPath("/")+"db/handicrafts.xml");
-	     CraftDao dao = new CraftDao(xmlPath);
+	     CraftDao dao = new CraftDao();
 	     List<Handicraft> list = dao.queryAll();
 	     if(list!=null){
 	   	 pageContext.setAttribute("handicrafts", list);

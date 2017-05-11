@@ -1,5 +1,5 @@
 <%@page
-	import="cn.jujiangzhai.dao.impl.xml.ShopDao,cn.jujiangzhai.entity.Shop"%>
+	import="cn.jujiangzhai.dao.impl.jdbc.ShopDao,cn.jujiangzhai.entity.Shop"%>
 <%@ page language="java" import="java.util.*,java.io.File"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -34,7 +34,7 @@
 			if (id != null) {
 		pageContext.setAttribute("hasId", true);
 		File xmlPath = new File(application.getRealPath("/") + "db" + File.separator + "shops.xml");
-		ShopDao dao = new ShopDao(xmlPath);
+		ShopDao dao = new ShopDao();
 		Shop p = dao.queryById(id);
 		pageContext.setAttribute("shop", p);
 			} else {

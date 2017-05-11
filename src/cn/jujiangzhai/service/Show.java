@@ -2,6 +2,7 @@ package cn.jujiangzhai.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,11 +13,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.jujiangzhai.dao.ICraftDao;
-import cn.jujiangzhai.dao.impl.xml.ArticleDao;
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
-import cn.jujiangzhai.dao.impl.xml.ShopDao;
-import cn.jujiangzhai.dao.impl.xml.TokenDao;
-import cn.jujiangzhai.dao.impl.xml.UserDao;
+import cn.jujiangzhai.dao.impl.jdbc.ArticleDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
+import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
+import cn.jujiangzhai.dao.impl.jdbc.UserDao;
 import cn.jujiangzhai.entity.Article;
 import cn.jujiangzhai.entity.ArticleListInfo;
 import cn.jujiangzhai.entity.DetailsInfo;
@@ -51,11 +52,11 @@ public class Show extends HttpServlet {
 
 		String action = request.getParameter("action");
 
-		CraftDao dao = new CraftDao(new File(Path.getHandicraftsPath(this.getServletContext())));
-		UserDao userDao = new UserDao(new File(Path.getUsersPath(this.getServletContext())));
-		ArticleDao articleDao = new ArticleDao(new File(Path.getArticlesPath(this.getServletContext())));
-		ShopDao shopDao = new ShopDao(new File(Path.getShopPath(this.getServletContext())));
-		TokenDao tokenDao = new TokenDao(new File(Path.getTokensPath(this.getServletContext())));
+		CraftDao dao = new CraftDao();
+		UserDao userDao = new UserDao();
+		ArticleDao articleDao = new ArticleDao();
+		ShopDao shopDao = new ShopDao();
+		TokenDao tokenDao = new TokenDao();
 		if ("getCraftList".equals(action)) {
 			List<Handicraft> list = dao.queryAll();
 			JSONArray jsonArray = new JSONArray();
@@ -333,7 +334,7 @@ public class Show extends HttpServlet {
 				if (id != null) {
 					status = 2;
 					User user = userDao.queryById(id);
-					List<String> collection = user.getCollection();
+					List<String> collection = Arrays.asList(user.getCollection().split("#"));
 
 					if (collection != null && collection.size() != 0) {
 
@@ -376,7 +377,7 @@ public class Show extends HttpServlet {
 				if (id != null) {
 					status = 2;
 					User user = userDao.queryById(id);
-					List<String> followUp = user.getFollowUp();
+					List<String> followUp = Arrays.asList(user.getFollowUp().split("#"));
 
 					if (followUp != null && followUp.size() != 0) {
 
