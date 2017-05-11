@@ -14,7 +14,7 @@ public class TestUserDao {
 
 	
 	private IUserDao dao = new UserDao();
-	
+	String userId = "321e93";
 	@Test
 	public void test(){
 		
@@ -67,5 +67,49 @@ public class TestUserDao {
 		System.out.println(dao.queryByUserName(userName));
 	}
 	
+	@Test
+	public void testCollect(){
+		String userId = "4ae335";
+		String itemId = "asczxc";
+		
+		dao.collect(userId, itemId);
+		
+	}
+	
+	@Test
+	public void testFollowUp(){
+		String userId = "4ae335";
+		String shopId = "azxc1212c";
+		
+		dao.followUp(userId, shopId);
+	}
+	
+	@Test
+	public void testUpdateCity(){
+		String city = "南京";
+		String userId = "4ae335";
+		
+		dao.updateCity(userId, city);
+	}
+	
+	@Test
+	public void testUpdateNickName(){
+
+		String nickName = "wales";
+		dao.updateNickName(userId, nickName);
+	}
+	
+	@Test
+	public void testCancelCollection(){
+		String itemId = "f8212e";
+		
+		dao.cancelCollect(userId, itemId);
+	}
+	
+	@Test
+	public void testCancelFollowUp(){
+		String itemId = "788dc9";
+		dao.cancelFollowUp(userId, itemId);
+	}
 
 }

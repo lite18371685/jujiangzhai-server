@@ -319,13 +319,13 @@ public class UserDao implements IUserDao {
 		}
 		
 		// 对collection字符串进行处理,删除指定的id
-		String regex = itemId+"#|#"+itemId;
+		String regex = itemId+"#|#"+itemId+"|"+itemId;
 		returnString = collection.replaceAll(regex, "");
 		
 		// 更新数据库
 		String sql2 = "update users set collection=? where id=?;";
 		try {
-			int update = qr.update(sql2, returnString,userId);
+			int update = qr.update(sql2, returnString, userId);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -336,14 +336,50 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void cancelFollowUp(String userId, String shopId) {
-		// TODO Auto-generated method stub
+	public void cancelFollowUp(String userId, String itemId) {
 
+		if (userId == null || "".equals(userId.trim())) {
+			return ;
+		}
+		if (itemId == null || "".equals(itemId.trim())) {
+			return ;
+		}
+		
+		// 先查询数据库中该用户的关注商品
+		String sql = "select followUp from users where id=?;";
+		String followUp = null;
+		try {
+			followUp = qr.query(sql, new ScalarHandler<String>(), userId);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		String returnString = null;
+		
+		// 如果该用户的关注店铺为空或者要被删除的id不包含在内 ,则返回
+		if(followUp == null || "".equals(followUp.trim()) || ! followUp.contains(itemId)){
+			return ;
+		}
+		
+		// 对collection字符串进行处理,删除指定的id
+		String regex = itemId+"#|#"+itemId+"|"+itemId;
+		returnString = followUp.replaceAll(regex, "");
+		
+		// 更新数据库
+		String sql2 = "update users set followUp=? where id=?;";
+		try {
+			int update = qr.update(sql2, returnString, userId);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ;
 	}
 
 	
 	/**
-	 * 对字段处理,itemId之间以#分隔,新加入的itemId将放在最前面
+	 * 对字段处理,将itemId插入字段，itemId之间以#分隔,新加入的itemId将放在最前面，如果字段中已有该id则仅提前位置
 	 * @param str 字段原先记录值
 	 * @param itemId 要插入的记录值
 	 * @return 处理后的字段值
