@@ -17,7 +17,7 @@ import org.dom4j.Element;
 import org.dom4j.Node;
 import org.dom4j.io.SAXReader;
 
-import cn.jujiangzhai.dao.impl.xml.CraftDao;
+import cn.jujiangzhai.dao.impl.jdbc.CraftDao;
 import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.util.Path;
 

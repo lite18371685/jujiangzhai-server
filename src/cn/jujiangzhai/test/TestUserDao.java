@@ -112,4 +112,14 @@ public class TestUserDao {
 		dao.cancelFollowUp(userId, itemId);
 	}
 
+	@Test 
+	public void testChangePwd(){
+		
+		System.out.println(dao.changePwd("eadaac", "qqqqzzzz", "qqqqzzzz1"));
+	}
+	
+	@Test
+	public void testChangeNickName(){
+		
+	}
 }

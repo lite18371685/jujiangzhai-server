@@ -23,4 +23,6 @@ public interface IShopDao {
 	
 	public boolean delete (String id);
 	
+	// 获取所有产品所在城市的列表(不重复)
+	public List<String> getAllCity();
 }

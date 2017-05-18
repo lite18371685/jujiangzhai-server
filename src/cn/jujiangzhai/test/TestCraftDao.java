@@ -14,6 +14,7 @@ import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.entity.Shop;
 import cn.jujiangzhai.util.JdbcUtils;
 import cn.jujiangzhai.util.Utils;
+import net.sf.json.JSONObject;
 
 public class TestCraftDao {
 
@@ -135,5 +136,12 @@ public class TestCraftDao {
 		
 		dao.viewed("f8212e");
 	}
+	
+	@Test
+	public void testGetAllCity(){
+		
+		System.out.println(dao.getAllCity().toString());
+	}
+	
 	
 }

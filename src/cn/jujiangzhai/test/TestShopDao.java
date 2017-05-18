@@ -82,5 +82,9 @@ public class TestShopDao {
 		
 	}
 	
+	@Test
+	public void testGetAllCity(){
+		System.out.println(dao.getAllCity());
+	}
 
 }

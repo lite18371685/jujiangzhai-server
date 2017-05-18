@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.ColumnListHandler;
 
 import cn.jujiangzhai.dao.IShopDao;
 import cn.jujiangzhai.entity.Handicraft;
@@ -202,6 +203,21 @@ public class ShopDao implements IShopDao {
 		
 		return true;
 
+	}
+
+	@Override
+	public List<String> getAllCity() {
+		String sql = "select distinct city from shops;";
+		
+		List<String> list = null;
+		
+		try {
+			list = qr.query(sql, new ColumnListHandler<String>());
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+		return list;
 	}
 
 }

@@ -47,6 +47,9 @@ public class TokenDao implements ITokenDao {
 	@Override
 	public void delete(String token) {
 
+		if(token == null || "".equals(token.trim()))
+			return;
+		
 		String sql = "delete from tokens where tokenStr=?;";
 		
 		try {
@@ -63,6 +66,9 @@ public class TokenDao implements ITokenDao {
 	@Override
 	public void deleteById(String id) {
 
+		if(id == null || "".equals(id.trim()))
+			return;
+		
 		String sql = "delete from tokens where userId=?;";
 		
 		try {
@@ -75,6 +81,9 @@ public class TokenDao implements ITokenDao {
 
 	@Override
 	public String queryById(String id) {
+		
+		if(id == null || "".equals(id.trim()))
+			return null;
 		
 		String sql = "select tokenStr from tokens where userId=?;";
 		
@@ -93,6 +102,9 @@ public class TokenDao implements ITokenDao {
 
 	@Override
 	public String queryByToken(String token) {
+		
+		if(token == null || "".equals(token.trim()))
+			return null;
 		
 		String sql = "select userId from tokens where tokenStr=?;";
 		

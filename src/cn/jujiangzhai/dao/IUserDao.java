@@ -27,5 +27,9 @@ public interface IUserDao {
 	
 	public void cancelFollowUp(String userId,String shopId);
 	
+	public boolean changePwd(String userId, String oldPwd, String newPwd);
 	
+	public boolean changeNickName(String userId, String newName);
+	
+	public boolean changeCity(String userId, String city );
 }

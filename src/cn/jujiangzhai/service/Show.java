@@ -400,6 +400,11 @@ public class Show extends HttpServlet {
 			result.add(jsonArray);
 
 			response.getWriter().write(result.toString());
+		}else if ("getCraftsCityList".equals(action)) {
+			response.getWriter().write(dao.getAllCity().toString());
+		}else if ("getShopsCityList".equals(action)) {
+			response.getWriter().write(shopDao.getAllCity().toString());
+			
 		}
 
 	}

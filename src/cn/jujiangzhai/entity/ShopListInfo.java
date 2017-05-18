@@ -1,5 +1,8 @@
 package cn.jujiangzhai.entity;
 
+import cn.jujiangzhai.util.Path;
+import cn.jujiangzhai.util.Utils;
+
 public class ShopListInfo {
 	String id;
 	String shopName;
@@ -67,7 +70,7 @@ public class ShopListInfo {
 		info.setBusinessScope(z.getBusinessScope());
 		info.setCity(z.getCity());
 		info.setDescription(z.getDescription());
-		info.setImgPath(z.getImgPath());
+		info.setImgPath(Path.SERVER_IP+"/img/shops/"+z.getId()+".jpg");
 		info.setShopName(z.getShopName());
 		
 		return info;
