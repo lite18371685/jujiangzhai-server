@@ -1,7 +1,8 @@
-package cn.jujiangzhai.entity;
+package cn.jujiangzhai.entity.info;
 
 import java.io.File;
 
+import cn.jujiangzhai.entity.Handicraft;
 import cn.jujiangzhai.util.Path;
 
 /**

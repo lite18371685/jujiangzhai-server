@@ -19,13 +19,13 @@ import cn.jujiangzhai.dao.impl.jdbc.ShopDao;
 import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
 import cn.jujiangzhai.dao.impl.jdbc.UserDao;
 import cn.jujiangzhai.entity.Article;
-import cn.jujiangzhai.entity.ArticleListInfo;
-import cn.jujiangzhai.entity.DetailsInfo;
 import cn.jujiangzhai.entity.Handicraft;
-import cn.jujiangzhai.entity.IndexInfo;
 import cn.jujiangzhai.entity.Shop;
-import cn.jujiangzhai.entity.ShopListInfo;
 import cn.jujiangzhai.entity.User;
+import cn.jujiangzhai.entity.info.ArticleListInfo;
+import cn.jujiangzhai.entity.info.DetailsInfo;
+import cn.jujiangzhai.entity.info.IndexInfo;
+import cn.jujiangzhai.entity.info.ShopListInfo;
 import cn.jujiangzhai.util.Path;
 import cn.jujiangzhai.util.Utils;
 import net.sf.json.JSONArray;
@@ -401,9 +401,20 @@ public class Show extends HttpServlet {
 
 			response.getWriter().write(result.toString());
 		}else if ("getCraftsCityList".equals(action)) {
-			response.getWriter().write(dao.getAllCity().toString());
+			JSONArray jsonArray = new JSONArray();
+			List<String> allCity = dao.getAllCity();
+			for(String str : allCity){
+				jsonArray.add(str);
+			}
+			response.getWriter().write(jsonArray.toString());
+			
 		}else if ("getShopsCityList".equals(action)) {
-			response.getWriter().write(shopDao.getAllCity().toString());
+			JSONArray jsonArray = new JSONArray();
+			List<String> allCity = shopDao.getAllCity();
+			for(String str : allCity){
+				jsonArray.add(str);
+			}
+			response.getWriter().write(jsonArray.toString());
 			
 		}
 

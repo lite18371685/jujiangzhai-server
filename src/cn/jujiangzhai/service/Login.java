@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import cn.jujiangzhai.dao.impl.jdbc.TokenDao;
 import cn.jujiangzhai.dao.impl.jdbc.UserDao;
-import cn.jujiangzhai.entity.TokenInfo;
 import cn.jujiangzhai.entity.User;
+import cn.jujiangzhai.entity.info.TokenInfo;
 import cn.jujiangzhai.util.Path;
 import net.sf.json.JSONObject;
 

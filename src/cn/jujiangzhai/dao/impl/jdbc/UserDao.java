@@ -14,7 +14,7 @@ import cn.jujiangzhai.util.JdbcUtils;
 
 public class UserDao implements IUserDao {
 
-	public static final int MAX_RECENTVIEWED = 8;
+	public static final int MAX_RECENTVIEWED = 12;
 
 	private QueryRunner qr = JdbcUtils.getQueryRunner();
 
@@ -194,9 +194,11 @@ public class UserDao implements IUserDao {
 		try {
 			String str = qr.query(sql1, new ScalarHandler<String>(), userId);
 
-			str = processStr(str, itemId);
+			if (!str.contains(itemId)) {
 
-			qr.update(sql2, str, userId);
+				str = processStr(str, itemId);
+				qr.update(sql2, str, userId);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -224,9 +226,11 @@ public class UserDao implements IUserDao {
 		try {
 			String str = qr.query(sql1, new ScalarHandler<String>(), userId);
 
-			str = processStr(str, itemId);
+			if (!str.contains(itemId)) {
 
-			qr.update(sql2, str, userId);
+				str = processStr(str, itemId);
+				qr.update(sql2, str, userId);
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -423,20 +427,19 @@ public class UserDao implements IUserDao {
 			}
 
 		}
-		
+
 		return false;
 
 	}
 
 	@Override
 	public boolean changeNickName(String userId, String newName) {
-		
-		if(userId == null || newName == null ){
+
+		if (userId == null || newName == null) {
 			return false;
 		}
-		
 
-		if(userId != null && !"".equals(userId)){
+		if (userId != null && !"".equals(userId)) {
 			String sql = "update users set nickName=? where id=?;";
 			try {
 				qr.update(sql, newName, userId);
@@ -444,30 +447,28 @@ public class UserDao implements IUserDao {
 				e.printStackTrace();
 				return false;
 			}
-			
-			return true;		
+
+			return true;
 		}
- 
+
 		return false;
 	}
 
 	@Override
 	public boolean changeCity(String userId, String city) {
-		if(userId == null || city == null ){
+		if (userId == null || city == null) {
 			return false;
 		}
-		
+
 		String sql = "update users set city=? where id=?;";
-		
+
 		try {
 			qr.update(sql, city, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return false;
 		}
-		
-		
-		
+
 		return true;
 	}
 

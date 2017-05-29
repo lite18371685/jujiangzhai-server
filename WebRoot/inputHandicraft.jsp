@@ -27,7 +27,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 
 	<%
-		File xmlPath = new File(pageContext.getServletContext().getRealPath("/")+"db/handicrafts.xml");
 	     CraftDao dao = new CraftDao();
 	     List<Handicraft> list = dao.queryAll();
 	     if(list!=null){

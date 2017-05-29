@@ -1,4 +1,4 @@
-package cn.jujiangzhai.entity;
+package cn.jujiangzhai.entity.info;
 
 public class TokenInfo {
 

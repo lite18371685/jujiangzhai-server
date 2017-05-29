@@ -1,5 +1,6 @@
-package cn.jujiangzhai.entity;
+package cn.jujiangzhai.entity.info;
 
+import cn.jujiangzhai.entity.Shop;
 import cn.jujiangzhai.util.Path;
 import cn.jujiangzhai.util.Utils;
 

@@ -1,5 +1,6 @@
-package cn.jujiangzhai.entity;
+package cn.jujiangzhai.entity.info;
 
+import cn.jujiangzhai.entity.Handicraft;
 
 /**
  * 消息实体类, 用于封装 产品详情页的信息
